@@ -1,0 +1,4 @@
+test-server: 
+  domains: example.com
+  ip: localhost
+  port: 7890
