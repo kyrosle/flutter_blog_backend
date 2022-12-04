@@ -1,4 +1,5 @@
 inside-std-rust: 
-  path: https://github.com/kyrosle/inside-std-rust
+  remote: https://github.com/kyrosle/inside-std-rust
+  branch: master
 salvo_t: 
-  path: https://github.com/kyrosle/salvo_t
+  remote: https://github.com/kyrosle/salvo_t

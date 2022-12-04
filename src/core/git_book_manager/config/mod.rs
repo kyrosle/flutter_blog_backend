@@ -4,6 +4,7 @@ use serde::{de::DeserializeOwned, Serialize};
 pub mod read_book_config;
 pub mod read_server_config;
 
+
 pub trait ReadConfig
 where
     Self: Serialize + DeserializeOwned + Sized,

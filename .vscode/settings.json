@@ -1,8 +1,11 @@
 {
     "cSpell.words": [
+        "Autotag",
+        "libgit",
         "Rbatis",
         "rbdc",
         "spath",
+        "structopt",
         "tempdir",
         "tempfile"
     ]

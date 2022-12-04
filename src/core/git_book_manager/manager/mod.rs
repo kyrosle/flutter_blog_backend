@@ -1,1 +1,1 @@
-mod github_manager;
+pub mod github_manager;
