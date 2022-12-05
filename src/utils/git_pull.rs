@@ -217,15 +217,15 @@ pub fn run(
     let remote_name = arg_remote.as_ref().map(|s| &s[..]).unwrap_or("origin");
     let remote_branch = arg_branch.as_ref().map(|s| &s[..]).unwrap_or("master");
 
-    println!("open path");
+    // println!("open path");
     let repo = Repository::open(path)?;
 
-    println!("find remote");
+    // println!("find remote");
     let mut remote = repo.find_remote(remote_name)?;
 
-    println!("fetch commit");
+    // println!("fetch commit");
     let fetch_commit = do_fetch(&repo, &[remote_branch], &mut remote)?;
 
-    println!("do merge");
+    // println!("do merge");
     do_merge(&repo, remote_branch, fetch_commit)
 }

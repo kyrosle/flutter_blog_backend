@@ -1,5 +1,6 @@
-inside-std-rust: 
-  remote: https://github.com/kyrosle/inside-std-rust
-  branch: master
-salvo_t: 
-  remote: https://github.com/kyrosle/salvo_t
+inside-std-rust:
+  remote_name: origin
+  url: https://github.com/kyrosle/inside-std-rust
+salvo_t:
+  remote_branch: origin
+  url: https://github.com/kyrosle/salvo_t

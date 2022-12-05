@@ -11,25 +11,30 @@ use crate::{core::SPath, utils::git_pull::run};
 /// `path` is about the git-url from the web.
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
 pub struct BookConfig {
-    pub remote: Option<String>,
-    pub branch: Option<String>,
+    pub remote_name: Option<String>,
+    pub remote_branch: Option<String>,
+    pub url: String,
 }
 
 impl BookConfig {
     /// If remote is None default is `origin`.
     ///
     /// If branch is None default is `master`.
-    pub fn new(remote: Option<String>, branch: Option<String>) -> Self {
-        Self { remote, branch }
+    pub fn new(remote_name: Option<String>, remote_branch: Option<String>, url: String) -> Self {
+        Self {
+            url,
+            remote_name,
+            remote_branch,
+        }
     }
     pub fn run(&self, path: SPath) -> Result<(), git2::Error> {
-        run(self.remote.clone(), self.branch.clone(), path)
+        run(self.remote_name.clone(), self.remote_branch.clone(), path)
     }
     pub fn get_remote(&self) -> Option<String> {
-        self.remote.clone()
+        self.remote_name.clone()
     }
     pub fn get_branch(&self) -> Option<String> {
-        self.branch.clone()
+        self.remote_branch.clone()
     }
 }
 
@@ -45,7 +50,7 @@ impl BookConfigs {
         for (name, config) in self.configs.iter() {
             println!(
                 "git pull - name: {} - remote: {:?} - branch : {:?}",
-                name, config.remote, config.branch
+                name, config.remote_name, config.remote_branch
             );
             let storage_path = storage_path.clone();
             let _ = config.run(storage_path.push(name));
@@ -67,7 +72,7 @@ impl BookConfigs {
                 }
                 // if failed, the want repository maybe a new repository, try to git clone the repository
                 Err(_) => {
-                    let url = book_config.remote.clone().unwrap_or_default();
+                    let url = book_config.url.clone();
                     match Repository::clone(&url, work_dir.clone()) {
                         Ok(_) => {
                             println!(
